@@ -11,7 +11,7 @@ def get_tokens(string):
     tokens = []
     i = 0
     while i < len(string) - 1:
-        if string[i] in ['(', ')', '+', '-', '*', '/']:
+        if not is_digit(string[i]):
             tokens.append(string[i])
             i += 1
         elif is_digit(string[i]):
