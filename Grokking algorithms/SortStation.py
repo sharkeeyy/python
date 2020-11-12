@@ -1,19 +1,31 @@
 import collections
 
 
-def eager_dijkstra():
-    pass
+def is_digit(string):
+    if string in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+        return True
+    return False
+
+
+def get_tokens(string):
+    tokens = []
+    i = 0
+    while i < len(string) - 1:
+        if string[i] in ['(', ')', '+', '-', '*', '/']:
+            tokens.append(string[i])
+            i += 1
+        elif is_digit(string[i]):
+            digit = ''
+            while is_digit(string[i]):
+                digit += string[i]
+                i += 1
+            tokens.append(digit)
+
+    return tokens
 
 
 if __name__ == "__main__":
-    d = {}
-    d['you'] = ['1', '2', '3']
-    d['1'] = ['Jessie']
-    d['2'] = ['Paulie', 'Sam']
-    d['3'] = ['Heizenberg']
-    d['Jessie'] = []
-    d['Paulie'] = []
-    d['Sam'] = []
-    d['Heizenberg'] = []
+    str = "5+6*200-(11+60/30)*3="
+    print(str)
 
-    print("i did it!")
+    print(get_tokens(str))
