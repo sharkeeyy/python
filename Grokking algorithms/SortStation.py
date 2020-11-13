@@ -50,7 +50,7 @@ def make_operation(digits:list, signs:list):
 
 
 if __name__ == "__main__":
-    testString = "1+1+1+1="
+    testString = "1+2*2/2="
     print(testString)
 
     tokens = get_tokens(testString)
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         if not is_sign(tokens[i]):
             digits.append(tokens[i])
             i += 1
-        elif (tokens[i] == '+') or (tokens[i] == '-'):
+        elif tokens[i] in ['+', '-', '*', '/']:
             if len(signs) == 0:
                 signs.append(tokens[i])
                 i += 1
@@ -80,9 +80,12 @@ if __name__ == "__main__":
             else:
                 make_operation(digits, signs)
         elif tokens[i] == '=':
-            make_operation(digits, signs)
-            print(digits[0])
-            i += 1
+            if len(signs) == 0:
+                print(digits[0])
+                i += 1
+            else:
+                make_operation(digits, signs)
+
 
 
 
