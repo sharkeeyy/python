@@ -11,12 +11,6 @@ def is_sign(string):
     return False
 
 
-def is_equals(string):
-    if string in ['=']:
-        return True
-    return False
-
-
 def get_tokens(string):
     tokens = []
     i = 0
@@ -50,13 +44,13 @@ def make_operation(digits:list, signs:list):
 
 
 if __name__ == "__main__":
-    testString = "1+2*2/2="
+    testString = "(((1+1)*2)*3)/6="
     print(testString)
 
     tokens = get_tokens(testString)
     print(tokens)
 
-    PRIORITY = {'+': 1, '-': 1, '/': 2, '*': 2}
+    PRIORITY = {'+': 1, '-': 1, '(': 1, ')': 1, '/': 2, '*': 2}
     digits = []
     signs = []
     result = 0
@@ -71,14 +65,20 @@ if __name__ == "__main__":
             digits.append(tokens[i])
             i += 1
         elif tokens[i] in ['+', '-', '*', '/']:
-            if len(signs) == 0:
-                signs.append(tokens[i])
-                i += 1
-            elif PRIORITY[tokens[i]] > PRIORITY[signs[len(signs) - 1]]:
+            if (len(signs) == 0) or (PRIORITY[tokens[i]] > PRIORITY[signs[len(signs) - 1]]) or (signs[len(signs) - 1] == '('):
                 signs.append(tokens[i])
                 i += 1
             else:
                 make_operation(digits, signs)
+        elif tokens[i] == '(':
+            signs.append(tokens[i])
+            i += 1
+        elif tokens[i] == ')':
+            if signs[len(signs) - 1] != '(':
+                make_operation(digits, signs)
+            else:
+                signs.pop()
+                i += 1
         elif tokens[i] == '=':
             if len(signs) == 0:
                 print(digits[0])
