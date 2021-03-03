@@ -44,7 +44,7 @@ def make_operation(digits:list, signs:list):
 
 
 if __name__ == "__main__":
-    testString = "(((1+1)*2)*3)/6="
+    testString = "6/2="
     print(testString)
 
     tokens = get_tokens(testString)
