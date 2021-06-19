@@ -9,6 +9,7 @@ pygame.display.set_caption('Checkers')
 
 
 def main():
+    # Hello!
     run = True
     clock = pygame.time.Clock()
     board = Board()
