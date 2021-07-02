@@ -44,6 +44,9 @@ class Game:
             return False
         return True
 
+    def draw_valid_moves(self, moves):
+        pass
+
     def change_turn(self):
         if self.turn == RED:
             self.turn == WHITE
