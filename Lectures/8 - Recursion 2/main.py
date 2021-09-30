@@ -23,4 +23,4 @@ def every_array_gen(M:int, N:int, prefix = None):
         prefix.pop()
 
 
-every_array_gen(3, 2)
+binary_gen(3)
