@@ -1,4 +1,4 @@
-def quick_sort(A:list):
+def quick_sort(A: list):
     if len(A) < 2:
         return A
     else:
