@@ -2,7 +2,7 @@ import pygame as pg
 import random
 import math
 
-RES = WIDTH, HEIGHT = 1024, 768
+RES = WIDTH, HEIGHT = 1600, 900
 NUM_STARS = 1500
 
 
@@ -10,6 +10,7 @@ vec2, vec3 = pg.math.Vector2, pg.math.Vector3
 CENTER = vec2(WIDTH // 2, HEIGHT // 2)
 COLORS = 'red green blue purple orange cyan'.split()
 Z_DISTANCE = 40
+ALPHA = 100
 
 
 class Star:
@@ -33,7 +34,7 @@ class Star:
         if self.pos3d.z < 1:
             self.pos3d = self.get_pos3d()
         self.screen_pos = vec2(self.pos3d.x, self.pos3d.y) / self.pos3d.z + CENTER
-        self.size = (Z_DISTANCE - self.pos3d.z) / 0.2 * self.pos3d.z
+        self.size = (Z_DISTANCE - self.pos3d.z) / (0.2 * self.pos3d.z)
 
     def draw(self):
         pg.draw.rect(self.screen, self.color, (*self.screen_pos, self.size, self.size))
@@ -56,12 +57,15 @@ class Starfield:
 class App:
     def __init__(self):
         self.screen = pg.display.set_mode(RES)
+        self.alpha_surface = pg.Surface(RES)
+        self.alpha_surface.set_alpha(ALPHA)
         self.clock = pg.time.Clock()
         self.starfield = Starfield(self)
 
     def run(self):
         while True:
-            self.screen.fill('black')
+            # self.screen.fill('black')
+            self.screen.blit(self.alpha_surface, (0, 0))
 
             self.starfield.update()
 
