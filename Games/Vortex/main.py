@@ -3,11 +3,11 @@ import random
 import math
 
 RES = WIDTH, HEIGHT = 1024, 768
-NUM_STARS = 100
+NUM_STARS = 1500
 
 
 vec2, vec3 = pg.math.Vector2, pg.math.Vector3
-CENTER = vec2(HEIGHT // 2, WIDTH // 2)
+CENTER = vec2(WIDTH // 2, HEIGHT // 2)
 COLORS = 'red green blue purple orange cyan'.split()
 Z_DISTANCE = 40
 
@@ -17,19 +17,26 @@ class Star:
         self.screen = app.screen
         self.pos3d = self.get_pos3d()
         self.velocity = random.uniform(0.05, 0.25)
+        self.color = random.choice(COLORS)
+        self.screen_pos = vec2(0, 0)
+        self.size = 10
 
-    def get_pos3d(self):
+    def get_pos3d(self, scale_pos=35):
         angle = random.uniform(0, 2 * math.pi)
-        radius = random.randrange(HEIGHT)
+        radius = random.randrange(HEIGHT // scale_pos, HEIGHT) * scale_pos
         x = radius * math.sin(angle)
         y = radius * math.cos(angle)
         return vec3(x, y, Z_DISTANCE)
 
     def update(self):
-        pass
+        self.pos3d.z -= self.velocity
+        if self.pos3d.z < 1:
+            self.pos3d = self.get_pos3d()
+        self.screen_pos = vec2(self.pos3d.x, self.pos3d.y) / self.pos3d.z + CENTER
+        self.size = (Z_DISTANCE - self.pos3d.z) / 0.2 * self.pos3d.z
 
     def draw(self):
-        pass
+        pg.draw.rect(self.screen, self.color, (*self.screen_pos, self.size, self.size))
 
 
 class Starfield:
@@ -41,6 +48,8 @@ class Starfield:
     def update(self):
         for star in self.stars:
             star.update()
+        self.stars.sort(key=lambda star: star.pos3d.z, reverse=True)
+        for star in self.stars:
             star.draw()
 
 
