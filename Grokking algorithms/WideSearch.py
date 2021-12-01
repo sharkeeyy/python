@@ -30,6 +30,6 @@ if __name__ == "__main__":
     d['Paulie'] = []
     d['Sam'] = []
     d['Heizenberg'] = []
-    wide_Search(d, 'you', '')
+    wide_Search(d, 'you', 'Paulie')
      
             
