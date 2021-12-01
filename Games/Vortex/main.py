@@ -2,7 +2,7 @@ import pygame as pg
 import random
 import math
 
-RES = WIDTH, HEIGHT = 1600, 900
+RES = WIDTH, HEIGHT = 1920, 1080
 NUM_STARS = 1500
 
 
@@ -35,6 +35,9 @@ class Star:
             self.pos3d = self.get_pos3d()
         self.screen_pos = vec2(self.pos3d.x, self.pos3d.y) / self.pos3d.z + CENTER
         self.size = (Z_DISTANCE - self.pos3d.z) / (0.2 * self.pos3d.z)
+        #mouse
+        mouse_pos = CENTER - pg.mouse.get_pos()
+        self.screen_pos += mouse_pos
 
     def draw(self):
         pg.draw.rect(self.screen, self.color, (*self.screen_pos, self.size, self.size))
@@ -53,6 +56,10 @@ class Starfield:
         for star in self.stars:
             star.draw()
 
+    def stop(self):
+        for i in range(NUM_STARS):
+            self.stars[i].velocity = 0
+
 
 class App:
     def __init__(self):
@@ -63,6 +70,7 @@ class App:
         self.starfield = Starfield(self)
 
     def run(self):
+        pg.mouse.set_visible(False)
         while True:
             # self.screen.fill('black')
             self.screen.blit(self.alpha_surface, (0, 0))
@@ -72,7 +80,10 @@ class App:
             pg.display.flip()
 
             for event in pg.event.get():
-                if event.type == pg.QUIT:
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_SPACE:
+                        self.starfield.stop()
+                if event.type == pg.QUIT or event.type == pg.MOUSEBUTTONUP:
                     exit()
             self.clock.tick(60)
 
