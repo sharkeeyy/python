@@ -2,8 +2,8 @@ import pygame as pg
 import random
 import math
 
-RES = WIDTH, HEIGHT = 1600, 900
-NUM_STARS = 1500
+RES = WIDTH, HEIGHT = 1024, 768
+NUM_STARS = 1
 
 
 vec2, vec3 = pg.math.Vector2, pg.math.Vector3
@@ -24,7 +24,8 @@ class Star:
 
     def get_pos3d(self, scale_pos=35):
         angle = random.uniform(0, 2 * math.pi)
-        radius = random.randrange(HEIGHT // scale_pos, HEIGHT) * scale_pos
+        #radius = random.randrange(HEIGHT // scale_pos, HEIGHT) * scale_pos
+        radius = 150
         x = radius * math.sin(angle)
         y = radius * math.cos(angle)
         return vec3(x, y, Z_DISTANCE)
@@ -38,6 +39,7 @@ class Star:
 
     def draw(self):
         pg.draw.rect(self.screen, self.color, (*self.screen_pos, self.size, self.size))
+        print(*self.screen_pos, ' size = ', self.size)
 
 
 class Starfield:
