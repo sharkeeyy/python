@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf60b579-c183-423f-87e8-2098e033275a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Games/.idea/Games.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Games/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Games/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Games/.idea/Games.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Games/.idea/Games.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Games/Vortex/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Games/Vortex/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Grokking algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Grokking algorithms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,9 +15,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1yxL7V0io9ojqd9kg3M6e8231iZ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
