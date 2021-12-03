@@ -12,6 +12,7 @@ class FireParticle:
     def __init__(self, x0, y0, app):
         self.screen = app.screen
         self.isAlive = True
+        self.time_alive = random.randint(420, 460)
         self.frame = 0
         self.x = 0
         self.y = 0
@@ -26,7 +27,7 @@ class FireParticle:
             pygame.draw.circle(self.screen, self.color, (round(self.x), round(self.y)), 3)
         elif self.frame <= 320:
             pygame.draw.circle(self.screen, self.color, (round(self.x), round(self.y)), 2)
-        elif self.frame <= 460:
+        elif self.frame <= self.time_alive:
             pygame.draw.circle(self.screen, self.color, (round(self.x), round(self.y)), 1)
         else:
             pass
@@ -38,5 +39,5 @@ class FireParticle:
                   (GRAVITY * math.pow(self.frame / FPS, 2)) / 2
         if (self.x > WIDTH) or (self.x < 0) or (self.y < 0) or (self.y > HEIGHT):
             self.isAlive = False
-        if self.frame > 460:
+        if self.frame > self.time_alive:
             self.isAlive = False
