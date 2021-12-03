@@ -1,13 +1,11 @@
 import pygame
 from FireField import FireField
 
-pygame.init()
-
 WIDTH = 1024
 HEIGHT = 768
 FPS = 60
 GRAVITY = 9.81
-ALPHA = 100
+ALPHA = 30
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -15,14 +13,17 @@ BLACK = (0, 0, 0)
 
 class App:
     def __init__(self):
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.display = pygame.display
+        self.screen = self.display.set_mode((WIDTH, HEIGHT))
+        self.alpha_surface = pygame.Surface((WIDTH, HEIGHT))
+        self.alpha_surface.set_alpha(ALPHA)
         self.clock = pygame.time.Clock()
         self.fireField = FireField(self)
 
     def run(self):
         running = True
         while running:
-            self.screen.fill(BLACK)
+            self.screen.blit(self.alpha_surface, (0, 0))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -34,7 +35,7 @@ class App:
             self.fireField.update()
             self.fireField.draw()
 
-            pygame.display.flip()
+            self.display.flip()
 
             self.clock.tick(FPS)
 
